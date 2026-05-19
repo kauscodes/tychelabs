@@ -119,6 +119,9 @@ function Nav() {
               {l.label}
             </a>
           ))}
+          <Link to="/blog" className="transition-colors hover:text-white">
+            Blog
+          </Link>
         </div>
         <a
           href="#cta"
