@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import heroBg from "@/assets/hero-bg.jpg";
 import opsFlow from "@/assets/ops-flow.jpg";
+import { FAQ } from "@/components/FAQ";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -10,7 +11,7 @@ const NAV_LINKS = [
   { label: "Approach", href: "#approach" },
   { label: "Systems", href: "#systems" },
   { label: "Who it's for", href: "#audience" },
-  { label: "Contact", href: "#cta" },
+  { label: "FAQ", href: "#faq" },
 ];
 
 const DIFFERENTIATORS = [
@@ -489,6 +490,7 @@ function Index() {
       <Approach />
       <Systems />
       <Audience />
+      <FAQ />
       <CTA />
       <Footer />
     </main>
