@@ -55,19 +55,18 @@ const CATEGORIES = Array.from(new Set(POSTS.map((p) => p.category)));
 function BlogIndex() {
   const [featured, ...rest] = POSTS;
   return (
-    <main className="bg-brand-bg text-foreground">
+    <main className="bg-white text-foreground">
       <BlogNav />
 
-      <header className="relative overflow-hidden border-b border-hairline">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(16,185,129,0.10),_transparent_60%)]" />
-        <div className="relative mx-auto max-w-7xl px-6 pb-20 pt-24 md:px-8 md:pb-28 md:pt-32">
-          <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
+      <header className="relative overflow-hidden border-b-2 border-black bg-pop-yellow">
+        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-20 md:px-8 md:pb-28 md:pt-28">
+          <span className="inline-block rounded-full border-2 border-black bg-black px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-pop-yellow">
             / Insights
-          </p>
-          <h1 className="animate-fade-up mt-6 max-w-4xl font-serif text-5xl leading-[1.05] text-white md:text-7xl">
+          </span>
+          <h1 className="animate-fade-up mt-6 max-w-4xl font-display text-5xl uppercase leading-[0.95] tracking-tight text-black md:text-7xl lg:text-[6rem]">
             Operational intelligence for modern agencies.
           </h1>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text-soft">
+          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/80">
             Sharp essays on AI-native operations, agency systems, workflow redesign, growth
             infrastructure, and the future of service businesses.
           </p>
@@ -75,7 +74,7 @@ function BlogIndex() {
             {CATEGORIES.map((c) => (
               <span
                 key={c}
-                className="rounded-full border border-hairline bg-surface-soft px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] text-text-soft"
+                className="rounded-full border-2 border-black bg-white px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black"
               >
                 {c}
               </span>
@@ -84,7 +83,7 @@ function BlogIndex() {
         </div>
       </header>
 
-      <section className="mx-auto max-w-7xl px-6 py-20 md:px-8 md:py-28">
+      <section className="mx-auto max-w-7xl px-5 py-20 md:px-8 md:py-24">
         <div className="grid gap-6 md:grid-cols-2">
           <BlogCard post={featured} featured />
           {rest.map((p) => (
