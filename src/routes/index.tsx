@@ -115,7 +115,7 @@ function Nav() {
           </span>
         </a>
         <div className="hidden items-center gap-8 text-sm font-medium tracking-wide text-text-soft md:flex">
-          {NAV_LINKS.slice(0, 3).map((l) => (
+          {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="transition-colors hover:text-white">
               {l.label}
             </a>
