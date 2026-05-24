@@ -62,9 +62,12 @@ const FAQS = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
-        <div className="md:col-span-5">
+    <section
+      id="faq"
+      className="border-y-2 border-black bg-surface-soft px-5 py-20 md:px-8 md:py-28"
+    >
+      <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:gap-14">
+        <div className="max-w-xl">
           <span className="inline-block rounded-full border-2 border-black bg-pop-yellow px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
             FAQ
           </span>
@@ -82,7 +85,7 @@ export function FAQ() {
             Have a different question? Book a call →
           </a>
         </div>
-        <div className="md:col-span-7">
+        <div className="w-full">
           <ul className="space-y-3">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
@@ -96,8 +99,8 @@ export function FAQ() {
                     className="group flex w-full items-start justify-between gap-6 px-5 py-5 text-left md:px-6"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-baseline gap-4">
-                      <span className="font-display text-sm text-pop-red">
+                    <div className="flex min-w-0 items-baseline gap-4">
+                      <span className="shrink-0 font-display text-sm text-pop-red">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <span className="font-display text-base uppercase leading-tight tracking-tight text-black md:text-lg">
@@ -113,15 +116,11 @@ export function FAQ() {
                       +
                     </span>
                   </button>
-                  <div
-                    className={`grid overflow-hidden transition-all duration-300 ${
-                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
-                    }`}
-                  >
-                    <div className="min-h-0 border-t-2 border-black/10 px-5 py-5 md:px-6">
+                  {isOpen ? (
+                    <div className="border-t-2 border-black/10 px-5 py-5 md:px-6">
                       <p className="text-base leading-relaxed text-text-soft">{f.a}</p>
                     </div>
-                  </div>
+                  ) : null}
                 </li>
               );
             })}

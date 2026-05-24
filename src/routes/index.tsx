@@ -12,47 +12,163 @@ const NAV_LINKS = [
   { label: "FAQ", href: "#faq" },
 ];
 
-// Marblism-style "character" cards — but reframed as Agency Systems
+// Pop-art operator cards, reframed as agency systems.
 const OPERATORS = [
-  { name: "GROWTH",   role: "Outbound & Pipeline",   color: "#22c55e", text: "#0a0a0a" },
-  { name: "DELIVERY", role: "Campaign Ops",          color: "#f97316", text: "#0a0a0a" },
-  { name: "INSIGHT",  role: "Reporting & QA",        color: "#3b82f6", text: "#ffffff" },
-  { name: "MEMORY",   role: "SOPs & Knowledge",      color: "#b91c5c", text: "#ffffff" },
-  { name: "INTAKE",   role: "Lead Qualification",    color: "#ec4899", text: "#0a0a0a" },
-  { name: "BRIEF",    role: "Proposal Workflows",    color: "#a855f7", text: "#ffffff" },
-  { name: "PULSE",    role: "Client Comms",          color: "#facc15", text: "#0a0a0a" },
-  { name: "FORGE",    role: "Content Production",    color: "#ef4444", text: "#ffffff" },
+  {
+    name: "GROWTH",
+    role: "Outbound & Pipeline",
+    color: "#22c55e",
+    text: "#0a0a0a",
+    graphic: "person",
+    accent: "#2563eb",
+  },
+  {
+    name: "DELIVERY",
+    role: "Campaign Ops",
+    color: "#f97316",
+    text: "#0a0a0a",
+    graphic: "tools",
+    accent: "#facc15",
+  },
+  {
+    name: "INSIGHT",
+    role: "Reporting & QA",
+    color: "#3b82f6",
+    text: "#ffffff",
+    graphic: "person",
+    accent: "#22c55e",
+  },
+  {
+    name: "MEMORY",
+    role: "SOPs & Knowledge",
+    color: "#b91c5c",
+    text: "#ffffff",
+    graphic: "tools",
+    accent: "#ec4899",
+  },
+  {
+    name: "INTAKE",
+    role: "Lead Qualification",
+    color: "#ec4899",
+    text: "#0a0a0a",
+    graphic: "person",
+    accent: "#facc15",
+  },
+  {
+    name: "BRIEF",
+    role: "Proposal Workflows",
+    color: "#a855f7",
+    text: "#ffffff",
+    graphic: "tools",
+    accent: "#22c55e",
+  },
+  {
+    name: "PULSE",
+    role: "Client Comms",
+    color: "#facc15",
+    text: "#0a0a0a",
+    graphic: "person",
+    accent: "#ef4444",
+  },
+  {
+    name: "FORGE",
+    role: "Content Production",
+    color: "#ef4444",
+    text: "#ffffff",
+    graphic: "tools",
+    accent: "#3b82f6",
+  },
 ];
 
 const DIFFERENTIATORS = [
-  { n: "01", reject: "We do not sell AI tools.",        affirm: "We redesign agency workflows.",         detail: "Most agencies add software until they break. We do the opposite." },
-  { n: "02", reject: "We do not chase hype.",           affirm: "We focus on measurable outcomes.",      detail: "Margins, capacity, leverage. No buzzwords, no agent theater." },
-  { n: "03", reject: "We do not deliver slide decks.",  affirm: "We build practical systems your team uses.", detail: "Shipped infrastructure, not a deck of recommendations." },
-  { n: "04", reject: "We do not automate everything.",  affirm: "We design the right human–AI split.",   detail: "Some workflows shouldn't be automated. We know which." },
+  {
+    n: "01",
+    reject: "We do not sell AI tools.",
+    affirm: "We redesign agency workflows.",
+    detail: "Most agencies add software until they break. We do the opposite.",
+  },
+  {
+    n: "02",
+    reject: "We do not chase hype.",
+    affirm: "We focus on measurable outcomes.",
+    detail: "Margins, capacity, leverage. No buzzwords, no agent theater.",
+  },
+  {
+    n: "03",
+    reject: "We do not deliver slide decks.",
+    affirm: "We build practical systems your team uses.",
+    detail: "Shipped infrastructure, not a deck of recommendations.",
+  },
+  {
+    n: "04",
+    reject: "We do not automate everything.",
+    affirm: "We design the right human–AI split.",
+    detail: "Some workflows shouldn't be automated. We know which.",
+  },
 ];
 
 const OLD_ENGINE = [
-  "Founder memory", "Scattered SOPs", "Manual reporting",
-  "Disconnected tools", "Inconsistent delivery", "Repetitive internal work",
+  "Founder memory",
+  "Scattered SOPs",
+  "Manual reporting",
+  "Disconnected tools",
+  "Inconsistent delivery",
+  "Repetitive internal work",
 ];
 
 const APPROACH = [
-  { n: "01", title: "Diagnose", body: "We map how your agency actually works — sales, delivery, reporting, client comms, QA, internal ops." },
-  { n: "02", title: "Redesign", body: "We identify high-friction workflows and rebuild them for AI-assisted execution." },
-  { n: "03", title: "Deploy",   body: "We implement systems and automations your team actually adopts." },
-  { n: "04", title: "Optimize", body: "We track what saves time, improves quality, and increases output — then iterate." },
+  {
+    n: "01",
+    title: "Diagnose",
+    body: "We map how your agency actually works — sales, delivery, reporting, client comms, QA, internal ops.",
+  },
+  {
+    n: "02",
+    title: "Redesign",
+    body: "We identify high-friction workflows and rebuild them for AI-assisted execution.",
+  },
+  {
+    n: "03",
+    title: "Deploy",
+    body: "We implement systems and automations your team actually adopts.",
+  },
+  {
+    n: "04",
+    title: "Optimize",
+    body: "We track what saves time, improves quality, and increases output — then iterate.",
+  },
 ];
 
 const SYSTEMS = [
-  { title: "Growth Systems",    body: "Outbound, lead qualification, account research, proposal workflows, pipeline operations.", color: "#22c55e" },
-  { title: "Delivery Systems",  body: "Campaign ops, reporting, content workflows, QA, client updates, execution tracking.", color: "#f97316" },
-  { title: "Internal Systems",  body: "SOP generation, knowledge management, task routing, team visibility, operational memory.", color: "#3b82f6" },
-  { title: "Client Experience", body: "Faster onboarding, cleaner reporting, sharper communication, more consistent delivery.", color: "#ec4899" },
+  {
+    title: "Growth Systems",
+    body: "Outbound, lead qualification, account research, proposal workflows, pipeline operations.",
+    color: "#22c55e",
+  },
+  {
+    title: "Delivery Systems",
+    body: "Campaign ops, reporting, content workflows, QA, client updates, execution tracking.",
+    color: "#f97316",
+  },
+  {
+    title: "Internal Systems",
+    body: "SOP generation, knowledge management, task routing, team visibility, operational memory.",
+    color: "#3b82f6",
+  },
+  {
+    title: "Client Experience",
+    body: "Faster onboarding, cleaner reporting, sharper communication, more consistent delivery.",
+    color: "#ec4899",
+  },
 ];
 
 const AUDIENCE = [
-  "Performance marketing agencies", "SEO agencies", "Creative agencies",
-  "Growth agencies", "Outbound & GTM agencies", "Full-service digital agencies",
+  "Performance marketing agencies",
+  "SEO agencies",
+  "Creative agencies",
+  "Growth agencies",
+  "Outbound & GTM agencies",
+  "Full-service digital agencies",
 ];
 
 const LOGOS = ["FORGE MEDIA", "ASCENT GROWTH", "VECTOR DIGITAL", "KINETIC OPS", "PRISM SEO"];
@@ -61,13 +177,13 @@ const LOGOS = ["FORGE MEDIA", "ASCENT GROWTH", "VECTOR DIGITAL", "KINETIC OPS", 
 function Nav() {
   return (
     <nav className="sticky top-0 z-50 border-b-2 border-black bg-white">
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-3 md:px-8">
+      <div className="mx-auto flex w-full max-w-[1360px] items-center justify-between px-5 py-4 md:px-8">
         <a href="#top" className="flex items-center gap-2">
-          <span className="font-display text-lg uppercase tracking-tight text-black md:text-xl">
+          <span className="font-display text-xl uppercase tracking-tight text-black md:text-2xl">
             TYCHE<span className="text-pop-red">.</span>AI
           </span>
         </a>
-        <div className="hidden items-center gap-7 text-sm font-semibold text-black md:flex">
+        <div className="hidden items-center gap-8 text-base font-semibold text-black md:flex">
           {NAV_LINKS.map((l) => (
             <a key={l.href} href={l.href} className="transition-colors hover:text-pop-red">
               {l.label}
@@ -79,7 +195,7 @@ function Nav() {
         </div>
         <a
           href="#cta"
-          className="rounded-md border-2 border-black bg-black px-4 py-2 text-xs font-display uppercase tracking-wider text-white transition-all hover:bg-pop-yellow hover:text-black md:px-5 md:py-2.5 md:text-sm shadow-brutal-sm hover:-translate-y-0.5 hover:translate-x-0.5"
+          className="rounded-lg border-2 border-black bg-black px-5 py-3 text-xs font-display uppercase tracking-wider text-white shadow-brutal-sm transition-all hover:-translate-y-0.5 hover:translate-x-0.5 hover:bg-pop-yellow hover:text-black md:px-7 md:text-base"
         >
           Get Started
         </a>
@@ -88,29 +204,86 @@ function Nav() {
   );
 }
 
-/* ---------------- Operator marquee (Marblism-style character strip) ---------------- */
+function OperatorGraphic({ type, accent, dark }: { type: string; accent: string; dark: boolean }) {
+  const ink = dark ? "#0a0a0a" : "#ffffff";
+  const shade = dark ? "rgba(10,10,10,0.2)" : "rgba(255,255,255,0.22)";
+
+  if (type === "tools") {
+    return (
+      <svg
+        className="absolute inset-x-0 bottom-3 mx-auto h-24 w-32 md:h-28 md:w-36"
+        viewBox="0 0 180 140"
+        aria-hidden="true"
+      >
+        <path d="M38 91h104l-9 31H48z" fill={shade} stroke={ink} strokeWidth="5" />
+        <path d="M61 57h62l15 36H46z" fill="#fff" stroke={ink} strokeWidth="5" />
+        <path d="M75 43h34l9 17H66z" fill={accent} stroke={ink} strokeWidth="5" />
+        <path d="M84 28h16v32H84z" fill="#fff" stroke={ink} strokeWidth="5" />
+        <path d="M41 106h99" stroke={ink} strokeWidth="5" strokeLinecap="round" />
+        <path d="M118 34l24-20 12 12-24 20z" fill={accent} stroke={ink} strokeWidth="5" />
+        <path d="M33 38l20 20m0-20L33 58" stroke={ink} strokeWidth="7" strokeLinecap="round" />
+        <circle cx="91" cy="79" r="9" fill={accent} stroke={ink} strokeWidth="5" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg
+      className="absolute inset-x-0 bottom-0 mx-auto h-28 w-32 md:h-32 md:w-36"
+      viewBox="0 0 180 160"
+      aria-hidden="true"
+    >
+      <path d="M41 154c4-34 24-52 49-52s45 18 49 52z" fill={accent} stroke={ink} strokeWidth="5" />
+      <path
+        d="M55 80c-7-45 62-55 71-12 8 41-55 54-71 12z"
+        fill={shade}
+        stroke={ink}
+        strokeWidth="5"
+      />
+      <path
+        d="M61 73c5-31 50-38 59-8 12 40-46 52-59 8z"
+        fill="#ffd4a3"
+        stroke={ink}
+        strokeWidth="5"
+      />
+      <path d="M58 63c11-31 51-39 71-6-18-7-42-4-71 6z" fill={ink} />
+      <path d="M78 84h1m31-5h1" stroke={ink} strokeWidth="8" strokeLinecap="round" />
+      <path d="M86 105c10 6 20 4 28-5" stroke={ink} strokeWidth="5" strokeLinecap="round" />
+      <path d="M47 120l36 15 48-17" stroke={ink} strokeWidth="5" strokeLinecap="round" />
+      <circle cx="133" cy="53" r="14" fill="#fff" stroke={ink} strokeWidth="5" />
+      <path d="M129 53h8m-4-4v8" stroke={ink} strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  );
+}
+
+/* ---------------- Operator marquee ---------------- */
 function OperatorStrip() {
   const row = [...OPERATORS, ...OPERATORS];
   return (
-    <div className="relative overflow-hidden border-b-2 border-black bg-white py-4">
-      <div className="flex w-max gap-3 animate-marquee px-3">
+    <div
+      data-section="operator-strip"
+      className="relative overflow-hidden border-b-2 border-black bg-white py-3"
+    >
+      <div className="flex w-max gap-4 animate-marquee px-4">
         {row.map((op, i) => (
           <div
             key={i}
-            className="relative flex h-40 w-40 shrink-0 flex-col justify-between overflow-hidden rounded-xl border-2 border-black p-3 md:h-52 md:w-52 md:p-4"
+            className="relative flex h-36 w-40 shrink-0 flex-col justify-between overflow-hidden rounded-lg border-2 border-black p-3 shadow-[3px_3px_0_0_#0a0a0a] md:h-52 md:w-56 md:p-4"
             style={{ backgroundColor: op.color, color: op.text }}
           >
             <span
-              className="font-display text-3xl leading-none tracking-tight md:text-5xl"
+              className="relative z-10 font-display text-4xl uppercase leading-none tracking-tight md:text-6xl"
               style={{ WebkitTextStroke: op.text === "#ffffff" ? "0" : "0", color: op.text }}
             >
               {op.name}
             </span>
-            <div>
+            <OperatorGraphic type={op.graphic} accent={op.accent} dark={op.text !== "#ffffff"} />
+            <div className="relative z-10">
               <div
-                className="inline-block rounded-md px-2 py-1 font-mono text-[9px] uppercase tracking-widest md:text-[10px]"
+                className="inline-block rounded-md px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-widest md:text-[10px]"
                 style={{
-                  backgroundColor: op.text === "#ffffff" ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.45)",
+                  backgroundColor:
+                    op.text === "#ffffff" ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.72)",
                   color: op.text,
                 }}
               >
@@ -120,7 +293,10 @@ function OperatorStrip() {
             {/* halftone dots */}
             <div
               className="pointer-events-none absolute -right-6 -top-6 size-24 rounded-full opacity-20"
-              style={{ backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)", backgroundSize: "8px 8px" }}
+              style={{
+                backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)",
+                backgroundSize: "8px 8px",
+              }}
             />
           </div>
         ))}
@@ -132,42 +308,46 @@ function OperatorStrip() {
 /* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <header id="top" className="relative overflow-hidden bg-white px-5 pt-16 pb-20 md:px-8 md:pt-24 md:pb-28">
-      <div className="relative mx-auto max-w-5xl text-center">
-        <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-black bg-pop-yellow px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black">
+    <header
+      id="top"
+      className="relative overflow-hidden bg-white px-5 pt-12 pb-16 md:px-8 md:pt-16 md:pb-20"
+    >
+      <div className="relative mx-auto max-w-6xl text-center">
+        <div
+          data-hero-badge
+          className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-black bg-pop-yellow px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black md:px-6 md:text-xs"
+        >
           <span className="size-1.5 rounded-full bg-black" />
           Operational AI for Marketing Agencies
         </div>
-        <h1 className="font-display text-5xl uppercase leading-[0.92] tracking-tight text-black md:text-7xl lg:text-[8rem]">
+        <h1 className="mx-auto max-w-7xl font-display text-5xl uppercase leading-[0.9] tracking-tight text-black md:text-[4.7rem] lg:text-[5.6rem] xl:text-[6.8rem]">
           AI-Native Systems
           <br />
-          To Scale Your
-          <br />
-          <span className="relative inline-block">
-            <span className="relative z-10 text-black">Agency</span>
+          <span className="relative inline-block whitespace-nowrap">
+            <span className="relative z-10 text-black">To Scale Your Agency</span>
             <span className="absolute inset-x-0 bottom-1 -z-0 h-4 bg-pop-yellow md:h-6 lg:h-8" />
           </span>
         </h1>
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-text-soft md:text-xl">
+        <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-text-soft md:text-2xl">
           We redesign how marketing agencies sell, deliver, and scale — not with more tools or
-          another dashboard, but with operational systems that make you faster, leaner, and
-          harder to copy.
+          another dashboard, but with operational systems that make you faster, leaner, and harder
+          to copy.
         </p>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
           <a
             href="#cta"
-            className="inline-flex items-center rounded-lg border-2 border-black bg-pop-yellow px-8 py-4 font-display text-base uppercase tracking-wider text-black shadow-brutal transition-transform hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-brutal-sm md:text-lg"
+            className="inline-flex min-w-64 items-center justify-center rounded-lg border-2 border-black bg-pop-yellow px-9 py-4 font-display text-base uppercase tracking-wider text-black shadow-brutal transition-transform hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-brutal-sm md:text-xl"
           >
             Book a Transformation Call
           </a>
           <a
             href="#systems"
-            className="inline-flex items-center rounded-lg border-2 border-black bg-white px-6 py-4 text-sm font-bold text-black transition-colors hover:bg-black hover:text-white"
+            className="inline-flex items-center rounded-lg border-2 border-black bg-white px-7 py-4 text-base font-bold text-black transition-colors hover:bg-black hover:text-white"
           >
             See the systems →
           </a>
         </div>
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-text-soft">
+        <div className="mt-9 flex flex-wrap items-center justify-center gap-5 text-sm font-semibold text-text-soft">
           <div className="flex items-center gap-2">
             <span className="font-display text-pop-green">★★★★★</span>
             <span>Trusted by 40+ agency teams</span>
@@ -213,8 +393,8 @@ function SubHero() {
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-text-soft">
           Agencies are under pressure from every side — margin squeeze, delivery chaos, hiring
-          costs, and clients who expect more for less. More clients shouldn't mean more
-          operational chaos.
+          costs, and clients who expect more for less. More clients shouldn't mean more operational
+          chaos.
         </p>
       </div>
     </section>
@@ -225,7 +405,11 @@ function SubHero() {
 function Pain() {
   const pains = [
     { color: "#facc15", label: "You start your day with 100+ unread emails" },
-    { color: "#ef4444", label: "Your best people waste hours on repetitive execution", txt: "#fff" },
+    {
+      color: "#ef4444",
+      label: "Your best people waste hours on repetitive execution",
+      txt: "#fff",
+    },
     { color: "#3b82f6", label: "Reports take a full day instead of a few minutes", txt: "#fff" },
     { color: "#22c55e", label: "Founder memory is your only real SOP" },
     { color: "#ec4899", label: "Hiring more humans no longer fixes the bottleneck" },
@@ -255,7 +439,10 @@ function Pain() {
               </p>
               <div
                 className="pointer-events-none absolute -right-8 -bottom-8 size-32 rounded-full opacity-15"
-                style={{ backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)", backgroundSize: "10px 10px" }}
+                style={{
+                  backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)",
+                  backgroundSize: "10px 10px",
+                }}
               />
             </div>
           ))}
@@ -275,11 +462,12 @@ function Differentiators() {
             What makes us different
           </span>
           <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-            We redesign the operating model. <span className="text-pop-red">Not</span> the toolstack.
+            We redesign the operating model. <span className="text-pop-red">Not</span> the
+            toolstack.
           </h2>
           <p className="mt-6 max-w-2xl text-lg text-text-soft">
-            We are not a chatbot agency. We are not Zapier consultants. We are not prompt
-            engineers. We build the systems that change how your agency actually runs.
+            We are not a chatbot agency. We are not Zapier consultants. We are not prompt engineers.
+            We build the systems that change how your agency actually runs.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
@@ -322,8 +510,8 @@ function OldEngine() {
             Your agency cannot scale linearly with headcount forever.
           </h2>
           <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
-            That model burns time, kills margins, and creates bottlenecks everywhere. We replace
-            it — one workflow at a time.
+            That model burns time, kills margins, and creates bottlenecks everywhere. We replace it
+            — one workflow at a time.
           </p>
         </div>
         <div className="md:col-span-7">
@@ -367,8 +555,8 @@ function Approach() {
             </h2>
           </div>
           <p className="max-w-sm text-base text-text-soft">
-            Successful AI adoption requires process redesign — not tool adoption. Here's how we
-            run that redesign.
+            Successful AI adoption requires process redesign — not tool adoption. Here's how we run
+            that redesign.
           </p>
         </div>
         <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
@@ -394,7 +582,10 @@ function Approach() {
 /* ---------------- Systems ---------------- */
 function Systems() {
   return (
-    <section id="systems" className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-32">
+    <section
+      id="systems"
+      className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-32"
+    >
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 max-w-3xl">
           <span className="inline-block rounded-full border-2 border-black bg-pop-orange px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
@@ -457,8 +648,8 @@ function Audience() {
             If your agency depends on humans doing repetitive work every day, we can redesign it.
           </p>
           <p className="mt-10 max-w-lg font-serif text-2xl italic leading-snug text-black">
-            "Tyche AI Labs helps agencies become AI-native — not by adding tools, but by
-            rebuilding operations around AI."
+            "Tyche AI Labs helps agencies become AI-native — not by adding tools, but by rebuilding
+            operations around AI."
           </p>
         </div>
         <div className="md:col-span-7">
@@ -500,8 +691,8 @@ function CTA() {
           your agency?
         </h2>
         <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-black/80 md:text-xl">
-          If your team is still spending too much time on repetitive work and scattered
-          operations, it's time to change the operating model.
+          If your team is still spending too much time on repetitive work and scattered operations,
+          it's time to change the operating model.
         </p>
         <div className="mt-10">
           <a
@@ -525,10 +716,14 @@ function Footer() {
     <footer className="border-t-2 border-black bg-black py-10 text-white">
       <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 text-xs md:flex-row md:items-center md:px-8">
         <div className="flex items-center gap-2">
-          <span className="font-display uppercase">Tyche<span className="text-pop-red">.</span>AI</span>
+          <span className="font-display uppercase">
+            Tyche<span className="text-pop-red">.</span>AI
+          </span>
           <span className="text-white/60">— AI-native operations for modern agencies.</span>
         </div>
-        <p className="text-white/60">© {new Date().getFullYear()} Tyche AI Labs. All rights reserved.</p>
+        <p className="text-white/60">
+          © {new Date().getFullYear()} Tyche AI Labs. All rights reserved.
+        </p>
       </div>
     </footer>
   );

@@ -79,7 +79,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "Tyche AI Labs redesigns marketing agencies for the AI era — fewer manual workflows, leaner ops, higher margins. Book a Transformation Call.",
       },
       { name: "author", content: "Tyche AI Labs" },
-      { property: "og:title", content: "Tyche AI Labs -  AI-native operations for modern agencies" },
+      {
+        property: "og:title",
+        content: "Tyche AI Labs -  AI-native operations for modern agencies",
+      },
       {
         property: "og:description",
         content:
@@ -87,12 +90,35 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Tyche AI Labs -  AI-native operations for modern agencies" },
-      { name: "description", content: "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability." },
-      { property: "og:description", content: "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability." },
-      { name: "twitter:description", content: "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability." },
-      { property: "og:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/3LxNlagpAhRowo8e87ekesulmZN2/social-images/social-1779218313236-ai_automation_image.webp" },
-      { name: "twitter:image", content: "https://storage.googleapis.com/gpt-engineer-file-uploads/3LxNlagpAhRowo8e87ekesulmZN2/social-images/social-1779218313236-ai_automation_image.webp" },
+      {
+        name: "twitter:title",
+        content: "Tyche AI Labs -  AI-native operations for modern agencies",
+      },
+      {
+        name: "description",
+        content:
+          "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability.",
+      },
+      {
+        property: "og:description",
+        content:
+          "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability.",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "Tyche AI Labs redesigns agency operations for the AI era, building AI-native systems to improve sales, delivery, and scalability.",
+      },
+      {
+        property: "og:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/3LxNlagpAhRowo8e87ekesulmZN2/social-images/social-1779218313236-ai_automation_image.webp",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://storage.googleapis.com/gpt-engineer-file-uploads/3LxNlagpAhRowo8e87ekesulmZN2/social-images/social-1779218313236-ai_automation_image.webp",
+      },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
@@ -100,7 +126,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Anton&family=Archivo+Black&family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap",
       },
     ],
   }),
