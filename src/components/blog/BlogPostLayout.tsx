@@ -9,35 +9,35 @@ import { getRelated } from "./posts";
 export function BlogPostLayout({ post }: { post: Post }) {
   const related = getRelated(post.relatedSlugs);
   return (
-    <main className="bg-brand-bg text-foreground">
+    <main className="bg-white text-foreground">
       <BlogNav />
 
       <article>
-        <header className="relative overflow-hidden border-b border-hairline">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.08),_transparent_60%)]" />
-          <div className="relative mx-auto max-w-4xl px-6 pb-20 pt-20 md:pt-28">
+        <header className="relative overflow-hidden border-b-2 border-black bg-pop-yellow">
+          <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-16 md:px-8 md:pt-24 md:pb-20">
             <Link
               to="/blog"
-              className="font-mono text-xs uppercase tracking-[0.22em] text-text-mute transition-colors hover:text-primary"
+              className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-black transition-colors hover:text-pop-red"
             >
               ← All articles
             </Link>
-            <div className="mt-10 flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-primary">
-              <span>{post.category}</span>
-              <span className="h-px w-10 bg-primary/40" />
-              <span className="text-text-mute">{post.readingTime}</span>
+            <div className="mt-8 flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
+              <span className="rounded-full border-2 border-black bg-white px-3 py-0.5">
+                {post.category}
+              </span>
+              <span>{post.readingTime}</span>
             </div>
-            <h1 className="animate-fade-up mt-6 font-serif text-4xl leading-[1.05] text-white md:text-6xl">
+            <h1 className="animate-fade-up mt-6 font-display text-4xl uppercase leading-[0.95] tracking-tight text-black md:text-6xl lg:text-7xl">
               {post.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-text-soft">{post.excerpt}</p>
-            <div className="mt-10 flex items-center gap-4 border-t border-hairline pt-6 text-sm text-text-mute">
-              <div className="flex size-9 items-center justify-center rounded-full border border-hairline bg-surface-soft font-mono text-[11px] text-primary">
+            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/80">{post.excerpt}</p>
+            <div className="mt-10 flex items-center gap-4 border-t-2 border-black/15 pt-6 text-sm text-black">
+              <div className="flex size-10 items-center justify-center rounded-full border-2 border-black bg-black font-display text-xs text-pop-yellow">
                 TL
               </div>
               <div>
-                <p className="text-white">Tyche AI Labs</p>
-                <p className="font-mono text-[11px] uppercase tracking-[0.18em]">
+                <p className="font-bold text-black">Tyche AI Labs</p>
+                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black/70">
                   {post.publishedLabel}
                 </p>
               </div>
@@ -45,20 +45,22 @@ export function BlogPostLayout({ post }: { post: Post }) {
           </div>
         </header>
 
-        <div className="px-6 py-20 md:py-28">
+        <div className="bg-white px-5 py-16 md:px-8 md:py-24">
           <BlogProse blocks={post.body} />
         </div>
 
         <BlogCTA heading={post.cta.heading} copy={post.cta.copy} button={post.cta.button} />
 
         {related.length > 0 && (
-          <section className="border-t border-hairline py-20">
-            <div className="mx-auto max-w-7xl px-6 md:px-8">
+          <section className="border-t-2 border-black bg-surface-soft py-20">
+            <div className="mx-auto max-w-7xl px-5 md:px-8">
               <div className="mb-10 flex items-end justify-between">
-                <h2 className="font-serif text-3xl text-white md:text-4xl">Keep reading</h2>
+                <h2 className="font-display text-3xl uppercase tracking-tight text-black md:text-5xl">
+                  Keep reading
+                </h2>
                 <Link
                   to="/blog"
-                  className="font-mono text-xs uppercase tracking-[0.18em] text-primary hover:underline"
+                  className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-black hover:text-pop-red"
                 >
                   All articles →
                 </Link>
