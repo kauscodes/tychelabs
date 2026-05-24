@@ -62,45 +62,50 @@ const FAQS = [
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="faq" className="border-y border-hairline bg-surface-soft/30 py-28 md:py-36">
-      <div className="mx-auto grid max-w-7xl gap-16 px-6 md:grid-cols-12 md:px-8">
+    <section id="faq" className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-32">
+      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
         <div className="md:col-span-5">
-          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-primary">
+          <span className="inline-block rounded-full border-2 border-black bg-pop-yellow px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
             FAQ
           </span>
-          <h2 className="mt-4 font-serif text-4xl leading-tight text-white md:text-5xl">
+          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-5xl">
             Straight answers to the questions agency founders actually ask.
           </h2>
-          <p className="mt-6 text-text-soft">
+          <p className="mt-6 text-base text-text-soft">
             No jargon, no hype, no theatrical AI talk. Just how we think about operational
             transformation for agencies.
           </p>
           <a
             href="#cta"
-            className="mt-10 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.2em] text-primary hover:underline"
+            className="mt-8 inline-flex items-center gap-2 rounded-lg border-2 border-black bg-black px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-pop-yellow hover:text-black"
           >
-            Have a different question? Book a call &rarr;
+            Have a different question? Book a call →
           </a>
         </div>
         <div className="md:col-span-7">
-          <ul className="divide-y divide-hairline border-y border-hairline">
+          <ul className="space-y-3">
             {FAQS.map((f, i) => {
               const isOpen = open === i;
               return (
-                <li key={f.q}>
+                <li
+                  key={f.q}
+                  className="overflow-hidden rounded-xl border-2 border-black bg-white shadow-brutal-sm"
+                >
                   <button
                     onClick={() => setOpen(isOpen ? null : i)}
-                    className="group flex w-full items-start justify-between gap-6 py-6 text-left transition-colors hover:bg-surface-soft/40"
+                    className="group flex w-full items-start justify-between gap-6 px-5 py-5 text-left md:px-6"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-baseline gap-5">
-                      <span className="font-mono text-xs text-text-mute">
+                    <div className="flex items-baseline gap-4">
+                      <span className="font-display text-sm text-pop-red">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-serif text-xl text-white md:text-2xl">{f.q}</span>
+                      <span className="font-display text-base uppercase leading-tight tracking-tight text-black md:text-lg">
+                        {f.q}
+                      </span>
                     </div>
                     <span
-                      className={`mt-2 font-mono text-lg text-primary transition-transform ${
+                      className={`mt-1 flex size-7 shrink-0 items-center justify-center rounded-md border-2 border-black bg-pop-yellow font-display text-lg text-black transition-transform ${
                         isOpen ? "rotate-45" : ""
                       }`}
                       aria-hidden
@@ -110,10 +115,10 @@ export function FAQ() {
                   </button>
                   <div
                     className={`grid overflow-hidden transition-all duration-300 ${
-                      isOpen ? "grid-rows-[1fr] pb-6" : "grid-rows-[0fr]"
+                      isOpen ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
                     }`}
                   >
-                    <div className="min-h-0 pl-12 pr-10">
+                    <div className="min-h-0 border-t-2 border-black/10 px-5 py-5 md:px-6">
                       <p className="text-base leading-relaxed text-text-soft">{f.a}</p>
                     </div>
                   </div>
