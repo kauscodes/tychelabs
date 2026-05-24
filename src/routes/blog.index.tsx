@@ -5,7 +5,7 @@ import { POSTS } from "@/components/blog/posts";
 
 const SITE = "https://tychelabs.lovable.app";
 
-export const Route = createFileRoute("/blog")({
+export const Route = createFileRoute("/blog/")({
   component: BlogIndex,
   head: () => ({
     meta: [
