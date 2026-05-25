@@ -39,10 +39,10 @@ export const Route = createFileRoute("/blog/$slug")({
             headline: post.title,
             description: post.metaDescription,
             datePublished: post.publishedISO,
-            author: { "@type": "Organization", name: "Tyche AI Labs", url: SITE },
+            author: { "@type": "Organization", name: "Tyche Labs", url: SITE },
             publisher: {
               "@type": "Organization",
-              name: "Tyche AI Labs",
+              name: "Tyche Labs",
               url: SITE,
             },
             mainEntityOfPage: url,

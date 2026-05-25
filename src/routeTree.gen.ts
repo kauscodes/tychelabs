@@ -10,6 +10,8 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
+import { Route as AnimatedShaderHeroDemoRouteImport } from './routes/animated-shader-hero-demo'
+import { Route as AnimatedHeroDemoRouteImport } from './routes/animated-hero-demo'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
@@ -17,6 +19,16 @@ import { Route as BlogSlugRouteImport } from './routes/blog.$slug'
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimatedShaderHeroDemoRoute = AnimatedShaderHeroDemoRouteImport.update({
+  id: '/animated-shader-hero-demo',
+  path: '/animated-shader-hero-demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AnimatedHeroDemoRoute = AnimatedHeroDemoRouteImport.update({
+  id: '/animated-hero-demo',
+  path: '/animated-hero-demo',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -37,12 +49,16 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/animated-hero-demo': typeof AnimatedHeroDemoRoute
+  '/animated-shader-hero-demo': typeof AnimatedShaderHeroDemoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/animated-hero-demo': typeof AnimatedHeroDemoRoute
+  '/animated-shader-hero-demo': typeof AnimatedShaderHeroDemoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog': typeof BlogIndexRoute
@@ -50,20 +66,43 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/animated-hero-demo': typeof AnimatedHeroDemoRoute
+  '/animated-shader-hero-demo': typeof AnimatedShaderHeroDemoRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/blog/$slug': typeof BlogSlugRoute
   '/blog/': typeof BlogIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sitemap.xml' | '/blog/$slug' | '/blog/'
+  fullPaths:
+    | '/'
+    | '/animated-hero-demo'
+    | '/animated-shader-hero-demo'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sitemap.xml' | '/blog/$slug' | '/blog'
-  id: '__root__' | '/' | '/sitemap.xml' | '/blog/$slug' | '/blog/'
+  to:
+    | '/'
+    | '/animated-hero-demo'
+    | '/animated-shader-hero-demo'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog'
+  id:
+    | '__root__'
+    | '/'
+    | '/animated-hero-demo'
+    | '/animated-shader-hero-demo'
+    | '/sitemap.xml'
+    | '/blog/$slug'
+    | '/blog/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AnimatedHeroDemoRoute: typeof AnimatedHeroDemoRoute
+  AnimatedShaderHeroDemoRoute: typeof AnimatedShaderHeroDemoRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   BlogSlugRoute: typeof BlogSlugRoute
   BlogIndexRoute: typeof BlogIndexRoute
@@ -76,6 +115,20 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animated-shader-hero-demo': {
+      id: '/animated-shader-hero-demo'
+      path: '/animated-shader-hero-demo'
+      fullPath: '/animated-shader-hero-demo'
+      preLoaderRoute: typeof AnimatedShaderHeroDemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/animated-hero-demo': {
+      id: '/animated-hero-demo'
+      path: '/animated-hero-demo'
+      fullPath: '/animated-hero-demo'
+      preLoaderRoute: typeof AnimatedHeroDemoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -104,6 +157,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AnimatedHeroDemoRoute: AnimatedHeroDemoRoute,
+  AnimatedShaderHeroDemoRoute: AnimatedShaderHeroDemoRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   BlogSlugRoute: BlogSlugRoute,
   BlogIndexRoute: BlogIndexRoute,

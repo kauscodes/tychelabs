@@ -9,27 +9,20 @@ export function BlogCTA({
 }) {
   return (
     <section className="mx-auto my-16 max-w-4xl px-5 md:px-6">
-      <div className="relative overflow-hidden rounded-2xl border-2 border-black bg-black p-8 text-white shadow-brutal md:p-12">
-        <div
-          className="pointer-events-none absolute -right-10 -top-10 size-48 rounded-full opacity-20"
-          style={{
-            backgroundImage: "radial-gradient(circle, #facc15 2px, transparent 2px)",
-            backgroundSize: "12px 12px",
-          }}
-        />
-        <span className="inline-block rounded-full border-2 border-pop-yellow bg-transparent px-3 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-pop-yellow">
-          / Next step
+      <div className="relative overflow-hidden rounded-[2rem] bg-slate-950 p-8 text-white shadow-[0_30px_100px_-55px_rgba(15,23,42,0.7)] md:p-12">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_0%,rgba(45,212,191,0.18),transparent_32%)]" />
+        <span className="relative inline-block rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-teal-100">
+          Next step
         </span>
-        <h3 className="mt-5 font-display text-3xl uppercase leading-[1] tracking-tight text-white md:text-5xl">
+        <h3 className="relative mt-5 font-display text-3xl font-semibold leading-tight tracking-tight text-white md:text-5xl">
           {heading}
         </h3>
-        <p className="mt-5 max-w-xl text-base leading-relaxed text-white/75">{copy}</p>
+        <p className="relative mt-5 max-w-xl text-base leading-7 text-slate-300">{copy}</p>
         <a
           href="/#cta"
-          className="mt-8 inline-flex items-center gap-2 rounded-lg border-2 border-black bg-pop-yellow px-6 py-3 font-display text-sm uppercase tracking-wider text-black shadow-brutal-sm transition-transform hover:-translate-y-0.5 hover:translate-x-0.5"
+          className="relative mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-teal-100"
         >
           {button}
-          <span aria-hidden>→</span>
         </a>
       </div>
     </section>

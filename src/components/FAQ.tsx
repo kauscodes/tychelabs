@@ -2,129 +2,77 @@ import { useState } from "react";
 
 const FAQS = [
   {
-    q: "What does \u201CAI-native agency\u201D actually mean?",
-    a: "An AI-native agency is not simply an agency using ChatGPT or automation tools. It is an agency that redesigns how it operates around AI-assisted workflows, operational systems, and scalable execution \u2014 delivery, reporting, internal ops, knowledge management, outbound, client comms, and orchestration. The goal is not to replace people. The goal is to increase operational leverage.",
+    q: "What do you actually do?",
+    a: "We fix the operating workflows that slow agencies down: reporting, delivery tracking, client updates, intake, proposals, SOPs, and handoffs.",
   },
   {
-    q: "Are you an AI automation agency?",
-    a: "No. We are not a generic automation vendor or chatbot implementation shop. Tyche AI Labs focuses on operational AI transformation for service businesses \u2014 especially agencies. We redesign workflows, operational systems, and execution models so agencies can scale more efficiently. Automation is only one part of the solution.",
+    q: "Is this just automation?",
+    a: "No. Automation is only useful after the workflow is clear. We redesign the workflow first, then add the right system around it.",
   },
   {
-    q: "What types of agencies do you work with?",
-    a: "Performance marketing agencies, SEO agencies, growth agencies, outbound/GTM agencies, creative agencies, and full-service digital agencies \u2014 especially firms dealing with delivery bottlenecks, operational chaos, scaling inefficiencies, reporting overhead, founder dependency, and margin pressure.",
+    q: "Who is this for?",
+    a: "Indian marketing and digital agencies that are growing, but feeling drag in delivery, reporting, client communication, or founder dependency.",
   },
   {
-    q: "What business outcomes do you typically improve?",
-    a: "Reduced delivery overhead, faster turnaround, improved operational visibility, higher leverage per employee, lower reporting workload, cleaner internal systems, scalable outbound infrastructure, reduced founder dependency, and better workflow standardization. We focus on measurable operational improvements, not AI experimentation.",
+    q: "Do we need to replace our tools?",
+    a: "Usually no. We prefer working with the tools your team already knows unless the current stack is the real bottleneck.",
   },
   {
-    q: "Will AI reduce our team size?",
-    a: "Not necessarily. The goal is not to replace employees. The goal is to reduce repetitive operational work, improve execution efficiency, increase output capacity, and help teams operate with more leverage.",
+    q: "How do we start?",
+    a: "Start with one messy workflow. We map it, find the leak, and show you what should be fixed first.",
   },
   {
-    q: "How long does implementation usually take?",
-    a: "It depends on operational complexity. Engagements typically begin with an operational audit, workflow mapping, pilot system implementation, and optimization. Smaller pilots move quickly. Larger operational redesigns are phased over time.",
+    q: "What does it cost?",
+    a: "The Ops Diagnostic is ₹15,000 and is credited toward a build sprint. Larger work depends on scope.",
   },
   {
-    q: "Do we need a technical team internally?",
-    a: "No. Most agencies we work with are not deeply technical. We handle operational design, workflow architecture, system implementation, and AI integration strategy. The goal is to create systems your operational team can actually adopt and use.",
+    q: "Will this disrupt the team?",
+    a: "It should do the opposite. We keep the first build narrow so the team can adopt it without stopping client work.",
   },
   {
-    q: "Will this disrupt our current operations?",
-    a: "We avoid rip-and-replace transformations. Our approach is phased and operationally practical \u2014 identify bottlenecks first, redesign critical workflows gradually, test pilot systems, and optimize incrementally.",
-  },
-  {
-    q: "What tools do you use?",
-    a: "We are tool-agnostic. The right systems depend on your workflows, operational maturity, delivery structure, team capabilities, and business goals. We build scalable operational systems, not push specific software stacks.",
-  },
-  {
-    q: "Is this consulting or implementation?",
-    a: "Both. We do not stop at strategy decks. Tyche AI Labs combines operational analysis, workflow redesign, system implementation, process optimization, and AI-assisted operational infrastructure. The focus is execution, not advisory.",
-  },
-  {
-    q: "Do you offer one-time projects or long-term engagements?",
-    a: "Both. Some agencies engage us for operational audits, workflow redesign projects, outbound infrastructure, and reporting optimization. Others engage longer-term for operational transformation initiatives.",
-  },
-  {
-    q: "How do you price engagements?",
-    a: "Pricing depends on operational complexity, workflow scope, implementation depth, team size, and transformation goals. Most engagements begin with an operational discovery phase before final scoping.",
-  },
-  {
-    q: "Why are agencies rethinking operations now?",
-    a: "The agency market is shifting fast: AI-driven workflow changes, rising client expectations, margin pressure, operational complexity, faster delivery cycles, and commoditization of repetitive execution. Agencies that keep operating manually will struggle against AI-native firms.",
-  },
-  {
-    q: "What makes Tyche AI Labs different from AI consultants?",
-    a: "Most AI firms focus on isolated automations, chatbots, and tool deployments. We focus on operational systems, workflow redesign, delivery infrastructure, scalable execution models, and agency operating transformation. Our perspective is operational-first, not tool-first.",
+    q: "What makes Tyche different?",
+    a: "We are not selling prompts, chatbots, or dashboards for the sake of it. We care about whether the agency becomes easier to run.",
   },
 ];
 
 export function FAQ() {
   const [open, setOpen] = useState<number | null>(0);
+
   return (
-    <section
-      id="faq"
-      className="border-y-2 border-black bg-surface-soft px-5 py-20 md:px-8 md:py-28"
-    >
-      <div className="mx-auto grid max-w-6xl items-start gap-10 lg:grid-cols-2 lg:gap-14">
-        <div className="max-w-xl">
-          <span className="inline-block rounded-full border-2 border-black bg-pop-yellow px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-            FAQ
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-5xl">
-            Straight answers to the questions agency founders actually ask.
+    <section id="faq" className="bg-white px-5 py-24 md:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.85fr_1.15fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">FAQ</p>
+          <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            Short answers.
           </h2>
-          <p className="mt-6 text-base text-text-soft">
-            No jargon, no hype, no theatrical AI talk. Just how we think about operational
-            transformation for agencies.
+          <p className="mt-6 max-w-md leading-7 text-slate-600">
+            The honest version first. Details can come later.
           </p>
-          <a
-            href="#cta"
-            className="mt-8 inline-flex items-center gap-2 rounded-lg border-2 border-black bg-black px-5 py-2.5 font-mono text-xs font-bold uppercase tracking-[0.18em] text-white transition-colors hover:bg-pop-yellow hover:text-black"
-          >
-            Have a different question? Book a call →
-          </a>
         </div>
-        <div className="w-full">
-          <ul className="space-y-3">
-            {FAQS.map((f, i) => {
-              const isOpen = open === i;
-              return (
-                <li
-                  key={f.q}
-                  className="overflow-hidden rounded-xl border-2 border-black bg-white shadow-brutal-sm"
+
+        <div className="divide-y divide-slate-200 border-y border-slate-200">
+          {FAQS.map((item, index) => {
+            const isOpen = open === index;
+            return (
+              <div key={item.q}>
+                <button
+                  type="button"
+                  onClick={() => setOpen(isOpen ? null : index)}
+                  className="flex w-full items-center justify-between gap-6 py-6 text-left"
+                  aria-expanded={isOpen}
                 >
-                  <button
-                    onClick={() => setOpen(isOpen ? null : i)}
-                    className="group flex w-full items-start justify-between gap-6 px-5 py-5 text-left md:px-6"
-                    aria-expanded={isOpen}
-                  >
-                    <div className="flex min-w-0 items-baseline gap-4">
-                      <span className="shrink-0 font-display text-sm text-pop-red">
-                        {String(i + 1).padStart(2, "0")}
-                      </span>
-                      <span className="font-display text-base uppercase leading-tight tracking-tight text-black md:text-lg">
-                        {f.q}
-                      </span>
-                    </div>
-                    <span
-                      className={`mt-1 flex size-7 shrink-0 items-center justify-center rounded-md border-2 border-black bg-pop-yellow font-display text-lg text-black transition-transform ${
-                        isOpen ? "rotate-45" : ""
-                      }`}
-                      aria-hidden
-                    >
-                      +
-                    </span>
-                  </button>
-                  {isOpen ? (
-                    <div className="border-t-2 border-black/10 px-5 py-5 md:px-6">
-                      <p className="text-base leading-relaxed text-text-soft">{f.a}</p>
-                    </div>
-                  ) : null}
-                </li>
-              );
-            })}
-          </ul>
+                  <span className="text-lg font-semibold tracking-tight text-slate-950">
+                    {item.q}
+                  </span>
+                  <span className="flex size-8 shrink-0 items-center justify-center rounded-full border border-slate-200 text-slate-500">
+                    {isOpen ? "-" : "+"}
+                  </span>
+                </button>
+                {isOpen ? <p className="pb-6 leading-7 text-slate-600">{item.a}</p> : null}
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

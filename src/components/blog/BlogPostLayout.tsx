@@ -9,35 +9,36 @@ import { getRelated } from "./posts";
 export function BlogPostLayout({ post }: { post: Post }) {
   const related = getRelated(post.relatedSlugs);
   return (
-    <main className="bg-white text-foreground">
+    <main className="bg-white text-slate-950">
       <BlogNav />
 
       <article>
-        <header className="relative overflow-hidden border-b-2 border-black bg-pop-yellow">
-          <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-16 md:px-8 md:pt-24 md:pb-20">
+        <header className="relative overflow-hidden bg-slate-950 text-white">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_0%,rgba(45,212,191,0.18),transparent_30%),linear-gradient(135deg,#020617,#0f172a)]" />
+          <div className="relative mx-auto max-w-4xl px-5 pb-16 pt-16 md:px-8 md:pb-20 md:pt-24">
             <Link
               to="/blog"
-              className="font-mono text-xs font-bold uppercase tracking-[0.22em] text-black transition-colors hover:text-pop-red"
+              className="text-sm font-medium text-slate-300 transition-colors hover:text-white"
             >
-              ← All articles
+              All articles
             </Link>
-            <div className="mt-8 flex items-center gap-3 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-              <span className="rounded-full border-2 border-black bg-white px-3 py-0.5">
+            <div className="mt-8 flex items-center gap-3 text-xs font-medium text-slate-300">
+              <span className="rounded-full border border-teal-300/30 bg-teal-300/10 px-3 py-1 text-teal-100">
                 {post.category}
               </span>
               <span>{post.readingTime}</span>
             </div>
-            <h1 className="animate-fade-up mt-6 font-display text-4xl uppercase leading-[0.95] tracking-tight text-black md:text-6xl lg:text-7xl">
+            <h1 className="animate-fade-up mt-6 font-display text-4xl font-semibold leading-tight tracking-tight text-white md:text-6xl lg:text-7xl">
               {post.title}
             </h1>
-            <p className="mt-6 max-w-2xl text-lg leading-relaxed text-black/80">{post.excerpt}</p>
-            <div className="mt-10 flex items-center gap-4 border-t-2 border-black/15 pt-6 text-sm text-black">
-              <div className="flex size-10 items-center justify-center rounded-full border-2 border-black bg-black font-display text-xs text-pop-yellow">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-300">{post.excerpt}</p>
+            <div className="mt-10 flex items-center gap-4 border-t border-white/10 pt-6 text-sm text-slate-300">
+              <div className="flex size-10 items-center justify-center rounded-full bg-white text-xs font-semibold text-slate-950">
                 TL
               </div>
               <div>
-                <p className="font-bold text-black">Tyche AI Labs</p>
-                <p className="font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black/70">
+                <p className="font-semibold text-white">Tyche Labs</p>
+                <p className="text-xs text-slate-400">
                   {post.publishedLabel}
                 </p>
               </div>
@@ -52,17 +53,17 @@ export function BlogPostLayout({ post }: { post: Post }) {
         <BlogCTA heading={post.cta.heading} copy={post.cta.copy} button={post.cta.button} />
 
         {related.length > 0 && (
-          <section className="border-t-2 border-black bg-surface-soft py-20">
+          <section className="border-t border-slate-200 bg-slate-50 py-20">
             <div className="mx-auto max-w-7xl px-5 md:px-8">
               <div className="mb-10 flex items-end justify-between">
-                <h2 className="font-display text-3xl uppercase tracking-tight text-black md:text-5xl">
+                <h2 className="font-display text-3xl font-semibold tracking-tight text-slate-950 md:text-5xl">
                   Keep reading
                 </h2>
                 <Link
                   to="/blog"
-                  className="font-mono text-xs font-bold uppercase tracking-[0.18em] text-black hover:text-pop-red"
+                  className="text-sm font-semibold text-slate-600 hover:text-slate-950"
                 >
-                  All articles →
+                  All articles
                 </Link>
               </div>
               <div className="grid gap-6 md:grid-cols-2">

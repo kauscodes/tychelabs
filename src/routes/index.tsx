@@ -1,449 +1,234 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState } from "react";
 import { FAQ } from "@/components/FAQ";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const WHATSAPP_URL = "http://wa.me/9569444462";
+
 const NAV_LINKS = [
+  { label: "Problems", href: "#problems" },
   { label: "Systems", href: "#systems" },
-  { label: "Approach", href: "#approach" },
-  { label: "Who it's for", href: "#audience" },
+  { label: "Services", href: "#services" },
+  { label: "Fit", href: "#fit" },
   { label: "FAQ", href: "#faq" },
 ];
 
-// Pop-art operator cards, reframed as agency systems.
-const OPERATORS = [
-  {
-    name: "GROWTH",
-    role: "Outbound & Pipeline",
-    color: "#22c55e",
-    text: "#0a0a0a",
-    graphic: "person",
-    accent: "#2563eb",
-  },
-  {
-    name: "DELIVERY",
-    role: "Campaign Ops",
-    color: "#f97316",
-    text: "#0a0a0a",
-    graphic: "tools",
-    accent: "#facc15",
-  },
-  {
-    name: "INSIGHT",
-    role: "Reporting & QA",
-    color: "#3b82f6",
-    text: "#ffffff",
-    graphic: "person",
-    accent: "#22c55e",
-  },
-  {
-    name: "MEMORY",
-    role: "SOPs & Knowledge",
-    color: "#b91c5c",
-    text: "#ffffff",
-    graphic: "tools",
-    accent: "#ec4899",
-  },
-  {
-    name: "INTAKE",
-    role: "Lead Qualification",
-    color: "#ec4899",
-    text: "#0a0a0a",
-    graphic: "person",
-    accent: "#facc15",
-  },
-  {
-    name: "BRIEF",
-    role: "Proposal Workflows",
-    color: "#a855f7",
-    text: "#ffffff",
-    graphic: "tools",
-    accent: "#22c55e",
-  },
-  {
-    name: "PULSE",
-    role: "Client Comms",
-    color: "#facc15",
-    text: "#0a0a0a",
-    graphic: "person",
-    accent: "#ef4444",
-  },
-  {
-    name: "FORGE",
-    role: "Content Production",
-    color: "#ef4444",
-    text: "#ffffff",
-    graphic: "tools",
-    accent: "#3b82f6",
-  },
+const TOOLS = [
+  { name: "HubSpot", domain: "hubspot.com" },
+  { name: "Zoho", domain: "zoho.com" },
+  { name: "Pipedrive", domain: "pipedrive.com" },
+  { name: "Apollo", domain: "apollo.io" },
+  { name: "Clay", domain: "clay.com" },
+  { name: "Instantly", domain: "instantly.ai" },
+  { name: "Smartlead", domain: "smartlead.ai" },
+  { name: "Zapier", domain: "zapier.com" },
+  { name: "Make", domain: "make.com" },
+  { name: "n8n", domain: "n8n.io" },
+  { name: "Airtable", domain: "airtable.com" },
+  { name: "Notion", domain: "notion.so" },
+  { name: "WhatsApp", domain: "whatsapp.com" },
+  { name: "Google Sheets", domain: "sheets.google.com" },
+  { name: "Meta Ads", domain: "meta.com" },
+  { name: "GA4", domain: "analytics.google.com" },
 ];
 
-const DIFFERENTIATORS = [
-  {
-    n: "01",
-    reject: "We do not sell AI tools.",
-    affirm: "We redesign agency workflows.",
-    detail: "Most agencies add software until they break. We do the opposite.",
-  },
-  {
-    n: "02",
-    reject: "We do not chase hype.",
-    affirm: "We focus on measurable outcomes.",
-    detail: "Margins, capacity, leverage. No buzzwords, no agent theater.",
-  },
-  {
-    n: "03",
-    reject: "We do not deliver slide decks.",
-    affirm: "We build practical systems your team uses.",
-    detail: "Shipped infrastructure, not a deck of recommendations.",
-  },
-  {
-    n: "04",
-    reject: "We do not automate everything.",
-    affirm: "We design the right human–AI split.",
-    detail: "Some workflows shouldn't be automated. We know which.",
-  },
-];
-
-const OLD_ENGINE = [
-  "Founder memory",
-  "Scattered SOPs",
-  "Manual reporting",
-  "Disconnected tools",
-  "Inconsistent delivery",
-  "Repetitive internal work",
-];
-
-const APPROACH = [
-  {
-    n: "01",
-    title: "Diagnose",
-    body: "We map how your agency actually works — sales, delivery, reporting, client comms, QA, internal ops.",
-  },
-  {
-    n: "02",
-    title: "Redesign",
-    body: "We identify high-friction workflows and rebuild them for AI-assisted execution.",
-  },
-  {
-    n: "03",
-    title: "Deploy",
-    body: "We implement systems and automations your team actually adopts.",
-  },
-  {
-    n: "04",
-    title: "Optimize",
-    body: "We track what saves time, improves quality, and increases output — then iterate.",
-  },
+const SIGNALS = [
+  "Reports take a day, and still need explanation.",
+  "Important work disappears inside WhatsApp.",
+  "Senior people answer the same questions twice a week.",
+  "New clients add more chaos than confidence.",
 ];
 
 const SYSTEMS = [
   {
-    title: "Growth Systems",
-    body: "Outbound, lead qualification, account research, proposal workflows, pipeline operations.",
-    color: "#22c55e",
+    title: "Growth",
+    body: "Lead intake, outbound rhythm, proposal flow.",
+    metric: "Fewer cold starts",
   },
   {
-    title: "Delivery Systems",
-    body: "Campaign ops, reporting, content workflows, QA, client updates, execution tracking.",
-    color: "#f97316",
+    title: "Delivery",
+    body: "Campaign status, ownership, deadlines, QA.",
+    metric: "Less chasing",
   },
   {
-    title: "Internal Systems",
-    body: "SOP generation, knowledge management, task routing, team visibility, operational memory.",
-    color: "#3b82f6",
+    title: "Reporting",
+    body: "Data pulls, narrative, client-ready updates.",
+    metric: "Hours back",
   },
   {
-    title: "Client Experience",
-    body: "Faster onboarding, cleaner reporting, sharper communication, more consistent delivery.",
-    color: "#ec4899",
+    title: "Knowledge",
+    body: "SOPs, templates, handoffs, team memory.",
+    metric: "Founder unblocked",
   },
 ];
 
-const AUDIENCE = [
-  "Performance marketing agencies",
-  "SEO agencies",
-  "Creative agencies",
-  "Growth agencies",
-  "Outbound & GTM agencies",
-  "Full-service digital agencies",
+const SERVICES = [
+  {
+    label: "Performance teams",
+    title: "Make reporting less painful.",
+    pain: "Your team should not spend the first week of every month rebuilding the same client reports.",
+    fix: "We connect the data, shape the narrative, and make reporting a repeatable workflow.",
+  },
+  {
+    label: "SEO teams",
+    title: "Turn content ops into a system.",
+    pain: "Briefs, drafts, QA, and updates get scattered across folders and people.",
+    fix: "We build the briefing, production, review, and reporting loop so quality does not depend on memory.",
+  },
+  {
+    label: "Creative teams",
+    title: "Clean the brief before work starts.",
+    pain: "Unclear inputs create revision loops. Revision loops eat margin.",
+    fix: "We structure intake, scope, approvals, and client updates before the project drifts.",
+  },
+  {
+    label: "Full-service teams",
+    title: "Let the agency run without you in every thread.",
+    pain: "Different service lines have different chaos, and the founder becomes the common API.",
+    fix: "We pick the two or three operating systems that remove the most founder dependency first.",
+  },
 ];
 
-const LOGOS = ["FORGE MEDIA", "ASCENT GROWTH", "VECTOR DIGITAL", "KINETIC OPS", "PRISM SEO"];
+const PROCESS = [
+  ["Map", "We look at how work actually moves, not how the deck says it moves."],
+  ["Choose", "We pick one painful workflow with a clear business reason to fix it."],
+  ["Build", "We ship the system inside the tools your team can realistically use."],
+  ["Adopt", "We tune the workflow until the team stops routing around it."],
+];
 
-/* ---------------- Nav ---------------- */
 function Nav() {
   return (
-    <nav className="sticky top-0 z-50 border-b-2 border-black bg-white">
-      <div className="mx-auto flex w-full max-w-[1360px] items-center justify-between px-5 py-4 md:px-8">
-        <a href="#top" className="flex items-center gap-2">
-          <span className="font-display text-xl uppercase tracking-tight text-black md:text-2xl">
-            TYCHE<span className="text-pop-red">.</span>AI
-          </span>
+    <nav className="sticky top-0 z-50 border-b border-slate-200/70 bg-white/85 backdrop-blur-xl">
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
+        <a href="#top" className="font-display text-xl font-black tracking-tight text-slate-950">
+          Tyche<span className="text-teal-500">.</span>AI
         </a>
-        <div className="hidden items-center gap-8 text-base font-semibold text-black md:flex">
-          {NAV_LINKS.map((l) => (
-            <a key={l.href} href={l.href} className="transition-colors hover:text-pop-red">
-              {l.label}
+        <div className="hidden items-center gap-7 text-sm font-medium text-slate-600 md:flex">
+          {NAV_LINKS.map((link) => (
+            <a key={link.href} href={link.href} className="transition-colors hover:text-slate-950">
+              {link.label}
             </a>
           ))}
-          <Link to="/blog" className="transition-colors hover:text-pop-red">
+          <Link to="/blog" className="transition-colors hover:text-slate-950">
             Blog
           </Link>
         </div>
         <a
           href="#cta"
-          className="rounded-lg border-2 border-black bg-black px-5 py-3 text-xs font-display uppercase tracking-wider text-white shadow-brutal-sm transition-all hover:-translate-y-0.5 hover:translate-x-0.5 hover:bg-pop-yellow hover:text-black md:px-7 md:text-base"
+          className="rounded-full bg-slate-950 px-5 py-2.5 text-sm font-semibold text-white shadow-[0_14px_30px_-18px_rgba(15,23,42,0.8)] transition hover:-translate-y-0.5 hover:bg-slate-800"
         >
-          Get Started
+          Start with an audit
         </a>
       </div>
     </nav>
   );
 }
 
-function OperatorGraphic({ type, accent, dark }: { type: string; accent: string; dark: boolean }) {
-  const ink = dark ? "#0a0a0a" : "#ffffff";
-  const shade = dark ? "rgba(10,10,10,0.2)" : "rgba(255,255,255,0.22)";
-
-  if (type === "tools") {
-    return (
-      <svg
-        className="absolute inset-x-0 bottom-3 mx-auto h-24 w-32 md:h-28 md:w-36"
-        viewBox="0 0 180 140"
-        aria-hidden="true"
-      >
-        <path d="M38 91h104l-9 31H48z" fill={shade} stroke={ink} strokeWidth="5" />
-        <path d="M61 57h62l15 36H46z" fill="#fff" stroke={ink} strokeWidth="5" />
-        <path d="M75 43h34l9 17H66z" fill={accent} stroke={ink} strokeWidth="5" />
-        <path d="M84 28h16v32H84z" fill="#fff" stroke={ink} strokeWidth="5" />
-        <path d="M41 106h99" stroke={ink} strokeWidth="5" strokeLinecap="round" />
-        <path d="M118 34l24-20 12 12-24 20z" fill={accent} stroke={ink} strokeWidth="5" />
-        <path d="M33 38l20 20m0-20L33 58" stroke={ink} strokeWidth="7" strokeLinecap="round" />
-        <circle cx="91" cy="79" r="9" fill={accent} stroke={ink} strokeWidth="5" />
-      </svg>
-    );
-  }
-
-  return (
-    <svg
-      className="absolute inset-x-0 bottom-0 mx-auto h-28 w-32 md:h-32 md:w-36"
-      viewBox="0 0 180 160"
-      aria-hidden="true"
-    >
-      <path d="M41 154c4-34 24-52 49-52s45 18 49 52z" fill={accent} stroke={ink} strokeWidth="5" />
-      <path
-        d="M55 80c-7-45 62-55 71-12 8 41-55 54-71 12z"
-        fill={shade}
-        stroke={ink}
-        strokeWidth="5"
-      />
-      <path
-        d="M61 73c5-31 50-38 59-8 12 40-46 52-59 8z"
-        fill="#ffd4a3"
-        stroke={ink}
-        strokeWidth="5"
-      />
-      <path d="M58 63c11-31 51-39 71-6-18-7-42-4-71 6z" fill={ink} />
-      <path d="M78 84h1m31-5h1" stroke={ink} strokeWidth="8" strokeLinecap="round" />
-      <path d="M86 105c10 6 20 4 28-5" stroke={ink} strokeWidth="5" strokeLinecap="round" />
-      <path d="M47 120l36 15 48-17" stroke={ink} strokeWidth="5" strokeLinecap="round" />
-      <circle cx="133" cy="53" r="14" fill="#fff" stroke={ink} strokeWidth="5" />
-      <path d="M129 53h8m-4-4v8" stroke={ink} strokeWidth="4" strokeLinecap="round" />
-    </svg>
-  );
-}
-
-/* ---------------- Operator marquee ---------------- */
-function OperatorStrip() {
-  const row = [...OPERATORS, ...OPERATORS];
-  return (
-    <div
-      data-section="operator-strip"
-      className="relative overflow-hidden border-b-2 border-black bg-white py-3"
-    >
-      <div className="flex w-max gap-4 animate-marquee px-4">
-        {row.map((op, i) => (
-          <div
-            key={i}
-            className="relative flex h-36 w-40 shrink-0 flex-col justify-between overflow-hidden rounded-lg border-2 border-black p-3 shadow-[3px_3px_0_0_#0a0a0a] md:h-52 md:w-56 md:p-4"
-            style={{ backgroundColor: op.color, color: op.text }}
-          >
-            <span
-              className="relative z-10 font-display text-4xl uppercase leading-none tracking-tight md:text-6xl"
-              style={{ WebkitTextStroke: op.text === "#ffffff" ? "0" : "0", color: op.text }}
-            >
-              {op.name}
-            </span>
-            <OperatorGraphic type={op.graphic} accent={op.accent} dark={op.text !== "#ffffff"} />
-            <div className="relative z-10">
-              <div
-                className="inline-block rounded-md px-2.5 py-1.5 font-mono text-[9px] uppercase tracking-widest md:text-[10px]"
-                style={{
-                  backgroundColor:
-                    op.text === "#ffffff" ? "rgba(0,0,0,0.35)" : "rgba(255,255,255,0.72)",
-                  color: op.text,
-                }}
-              >
-                {op.role}
-              </div>
-            </div>
-            {/* halftone dots */}
-            <div
-              className="pointer-events-none absolute -right-6 -top-6 size-24 rounded-full opacity-20"
-              style={{
-                backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)",
-                backgroundSize: "8px 8px",
-              }}
-            />
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
-/* ---------------- Hero ---------------- */
 function Hero() {
   return (
-    <header
-      id="top"
-      className="relative overflow-hidden bg-white px-5 pt-12 pb-16 md:px-8 md:pt-16 md:pb-20"
-    >
-      <div className="relative mx-auto max-w-6xl text-center">
-        <div
-          data-hero-badge
-          className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-black bg-pop-yellow px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-[0.18em] text-black md:px-6 md:text-xs"
-        >
-          <span className="size-1.5 rounded-full bg-black" />
-          Operational AI for Marketing Agencies
-        </div>
-        <h1 className="mx-auto max-w-7xl font-display text-5xl uppercase leading-[0.9] tracking-tight text-black md:text-[4.7rem] lg:text-[5.6rem] xl:text-[6.8rem]">
-          AI-Native Systems
-          <br />
-          <span className="relative inline-block whitespace-nowrap">
-            <span className="relative z-10 text-black">To Scale Your Agency</span>
-            <span className="absolute inset-x-0 bottom-1 -z-0 h-4 bg-pop-yellow md:h-6 lg:h-8" />
-          </span>
-        </h1>
-        <p className="mx-auto mt-7 max-w-2xl text-lg leading-relaxed text-text-soft md:text-2xl">
-          We redesign how marketing agencies sell, deliver, and scale — not with more tools or
-          another dashboard, but with operational systems that make you faster, leaner, and harder
-          to copy.
-        </p>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
-          <a
-            href="#cta"
-            className="inline-flex min-w-64 items-center justify-center rounded-lg border-2 border-black bg-pop-yellow px-9 py-4 font-display text-base uppercase tracking-wider text-black shadow-brutal transition-transform hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-brutal-sm md:text-xl"
-          >
-            Book a Transformation Call
-          </a>
-          <a
-            href="#systems"
-            className="inline-flex items-center rounded-lg border-2 border-black bg-white px-7 py-4 text-base font-bold text-black transition-colors hover:bg-black hover:text-white"
-          >
-            See the systems →
-          </a>
-        </div>
-        <div className="mt-9 flex flex-wrap items-center justify-center gap-5 text-sm font-semibold text-text-soft">
-          <div className="flex items-center gap-2">
-            <span className="font-display text-pop-green">★★★★★</span>
-            <span>Trusted by 40+ agency teams</span>
+    <header id="top" className="relative overflow-hidden bg-slate-950 text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_15%,rgba(45,212,191,0.22),transparent_30%),radial-gradient(circle_at_80%_0%,rgba(14,165,233,0.16),transparent_28%),linear-gradient(135deg,#020617_0%,#0f172a_48%,#111827_100%)]" />
+      <div
+        className="absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            "linear-gradient(rgba(255,255,255,.75) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.75) 1px, transparent 1px)",
+          backgroundSize: "56px 56px",
+        }}
+      />
+      <div className="relative mx-auto grid min-h-[calc(100dvh-73px)] max-w-7xl items-center gap-12 px-5 py-20 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:py-24">
+        <div>
+          <div className="inline-flex rounded-full border border-white/12 bg-white/7 px-4 py-2 text-xs font-medium text-teal-100 backdrop-blur">
+            For early and growth-stage Indian agencies
           </div>
-          <div className="hidden md:block">·</div>
-          <div>No tool theatre. Just operational leverage.</div>
+          <h1 className="mt-7 max-w-4xl font-display text-5xl font-semibold tracking-tight text-white md:text-7xl lg:text-8xl">
+            Your agency is growing. Your operations are not keeping up.
+          </h1>
+          <p className="mt-7 max-w-2xl text-lg leading-8 text-slate-300 md:text-xl">
+            We help agency founders turn messy delivery, reporting, and client communication into
+            calm systems the team can actually run.
+          </p>
+          <div className="mt-9 flex flex-wrap gap-3">
+            <a
+              href="#cta"
+              className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-teal-100"
+            >
+              Book an ops diagnostic
+            </a>
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noreferrer"
+              className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white backdrop-blur transition hover:-translate-y-0.5 hover:bg-white/10"
+            >
+              WhatsApp first
+            </a>
+          </div>
+          <p className="mt-5 text-sm text-slate-400">
+            We start with one workflow your team already feels every week.
+          </p>
+        </div>
+
+        <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-4 shadow-[0_30px_120px_-45px_rgba(45,212,191,0.65)] backdrop-blur-xl">
+          <div className="rounded-[1.5rem] border border-white/10 bg-slate-950/60 p-5">
+            <div className="flex items-center justify-between border-b border-white/10 pb-4">
+              <div>
+                <p className="text-xs uppercase tracking-[0.18em] text-slate-500">Ops view</p>
+                <p className="mt-1 font-semibold text-white">This week</p>
+              </div>
+              <span className="rounded-full bg-teal-400/10 px-3 py-1 text-xs font-medium text-teal-200">
+                3 leaks found
+              </span>
+            </div>
+            <div className="mt-5 space-y-3">
+              {SIGNALS.map((signal, index) => (
+                <div
+                  key={signal}
+                  className="flex gap-4 rounded-2xl border border-white/8 bg-white/[0.04] p-4"
+                >
+                  <span className="mt-1 flex size-6 shrink-0 items-center justify-center rounded-full bg-teal-400/10 text-xs font-semibold text-teal-200">
+                    {index + 1}
+                  </span>
+                  <p className="text-sm leading-6 text-slate-300">{signal}</p>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-2xl bg-teal-400/10 p-4 text-sm leading-6 text-teal-50">
+              Start small: one workflow, one owner, one measurable before/after.
+            </div>
+          </div>
         </div>
       </div>
     </header>
   );
 }
 
-/* ---------------- Logo strip ---------------- */
-function LogoStrip() {
+function ToolStrip() {
+  const row = [...TOOLS, ...TOOLS];
   return (
-    <section className="border-y-2 border-black bg-surface-soft py-6">
-      <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-8 gap-y-3 px-6 md:px-8">
-        <span className="font-mono text-[10px] font-bold uppercase tracking-[0.25em] text-black">
-          Built for agencies like ↓
-        </span>
-        {LOGOS.map((l) => (
-          <span key={l} className="font-display text-sm uppercase tracking-[0.15em] text-black/70">
-            {l}
-          </span>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- SubHero ---------------- */
-function SubHero() {
-  return (
-    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto max-w-5xl text-center">
-        <span className="inline-block rounded-full border-2 border-black bg-pop-pink px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-          The Pressure
-        </span>
-        <h2 className="mx-auto mt-6 max-w-4xl font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-          You want to scale your agency,
-          <br />
-          <span className="text-pop-red">but…</span>
-        </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-text-soft">
-          Agencies are under pressure from every side — margin squeeze, delivery chaos, hiring
-          costs, and clients who expect more for less. More clients shouldn't mean more operational
-          chaos.
+    <section className="border-b border-slate-200 bg-white py-5">
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        <p className="mb-4 text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
+          Works with the stack your team already knows
         </p>
       </div>
-    </section>
-  );
-}
-
-/* ---------------- Pain comic cards ---------------- */
-function Pain() {
-  const pains = [
-    { color: "#facc15", label: "You start your day with 100+ unread emails" },
-    {
-      color: "#ef4444",
-      label: "Your best people waste hours on repetitive execution",
-      txt: "#fff",
-    },
-    { color: "#3b82f6", label: "Reports take a full day instead of a few minutes", txt: "#fff" },
-    { color: "#22c55e", label: "Founder memory is your only real SOP" },
-    { color: "#ec4899", label: "Hiring more humans no longer fixes the bottleneck" },
-    { color: "#a855f7", label: "Slack is where work goes to die", txt: "#fff" },
-  ];
-  return (
-    <section className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 max-w-3xl">
-          <span className="inline-block rounded-full border-2 border-black bg-white px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-            What's actually broken
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-5xl">
-            Most agencies are still running on Slack messages and founder memory.
-          </h2>
-        </div>
-        <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {pains.map((p, i) => (
+      <div className="overflow-hidden">
+        <div className="flex w-max animate-marquee gap-3 px-5 md:px-8">
+          {row.map((tool, index) => (
             <div
-              key={i}
-              className="relative overflow-hidden rounded-xl border-2 border-black p-6 shadow-brutal-sm transition-transform hover:-translate-y-1 md:p-8"
-              style={{ backgroundColor: p.color, color: p.txt ?? "#0a0a0a" }}
+              key={`${tool.name}-${index}`}
+              className="flex h-12 min-w-40 items-center gap-3 rounded-full border border-slate-200 bg-slate-50 px-4"
             >
-              <span className="font-mono text-xs font-bold opacity-70">0{i + 1}</span>
-              <p className="mt-4 font-display text-xl uppercase leading-[1.05] md:text-2xl">
-                "{p.label}."
-              </p>
-              <div
-                className="pointer-events-none absolute -right-8 -bottom-8 size-32 rounded-full opacity-15"
-                style={{
-                  backgroundImage: "radial-gradient(circle, #0a0a0a 1.5px, transparent 1.5px)",
-                  backgroundSize: "10px 10px",
-                }}
+              <img
+                src={`https://www.google.com/s2/favicons?domain=${tool.domain}&sz=64`}
+                alt={`${tool.name} logo`}
+                className="size-5 rounded-sm"
+                loading="lazy"
               />
+              <span className="text-sm font-medium text-slate-700">{tool.name}</span>
             </div>
           ))}
         </div>
@@ -452,43 +237,24 @@ function Pain() {
   );
 }
 
-/* ---------------- Differentiators ---------------- */
-function Differentiators() {
+function Problems() {
   return (
-    <section className="bg-white px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-14 max-w-3xl">
-          <span className="inline-block rounded-full border-2 border-black bg-pop-green px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-            What makes us different
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-            We redesign the operating model. <span className="text-pop-red">Not</span> the
-            toolstack.
+    <section id="problems" className="bg-slate-50 px-5 py-24 md:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">The real problem</p>
+          <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            Growth exposes every manual habit.
           </h2>
-          <p className="mt-6 max-w-2xl text-lg text-text-soft">
-            We are not a chatbot agency. We are not Zapier consultants. We are not prompt engineers.
-            We build the systems that change how your agency actually runs.
+          <p className="mt-6 max-w-xl text-lg leading-8 text-slate-600">
+            Most agencies do not need another tool. They need fewer unclear handoffs, fewer hidden
+            decisions, and fewer client updates written from scratch.
           </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {DIFFERENTIATORS.map((d) => (
-            <div
-              key={d.n}
-              className="relative rounded-2xl border-2 border-black bg-white p-8 shadow-brutal-sm transition-transform hover:-translate-y-1 md:p-10"
-            >
-              <div className="flex items-center justify-between">
-                <span className="font-display text-3xl text-pop-red md:text-4xl">{d.n}</span>
-                <span className="rounded-full border-2 border-black bg-pop-yellow px-3 py-1 font-mono text-[9px] font-bold uppercase tracking-widest">
-                  Principle
-                </span>
-              </div>
-              <p className="mt-6 text-sm text-text-mute line-through decoration-text-mute/50">
-                {d.reject}
-              </p>
-              <p className="mt-2 font-display text-2xl uppercase leading-[1.1] text-black md:text-3xl">
-                {d.affirm}
-              </p>
-              <p className="mt-5 text-base leading-relaxed text-text-soft">{d.detail}</p>
+        <div className="grid gap-4">
+          {SIGNALS.map((signal) => (
+            <div key={signal} className="rounded-3xl border border-slate-200 bg-white p-6 shadow-[0_18px_50px_-35px_rgba(15,23,42,0.45)]">
+              <p className="text-lg font-medium text-slate-950">{signal}</p>
             </div>
           ))}
         </div>
@@ -497,132 +263,22 @@ function Differentiators() {
   );
 }
 
-/* ---------------- Old engine list ---------------- */
-function OldEngine() {
-  return (
-    <section className="border-y-2 border-black bg-black px-5 py-24 text-white md:px-8 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <span className="inline-block rounded-full border-2 border-pop-yellow bg-transparent px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-pop-yellow">
-            The Old Engine
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-white md:text-5xl">
-            Your agency cannot scale linearly with headcount forever.
-          </h2>
-          <p className="mt-6 max-w-md text-base leading-relaxed text-white/70">
-            That model burns time, kills margins, and creates bottlenecks everywhere. We replace it
-            — one workflow at a time.
-          </p>
-        </div>
-        <div className="md:col-span-7">
-          <ul className="divide-y divide-white/15 border-y border-white/15">
-            {OLD_ENGINE.map((item, i) => (
-              <li
-                key={item}
-                className="group flex items-center justify-between py-5 transition-colors hover:bg-white/5"
-              >
-                <div className="flex items-baseline gap-5">
-                  <span className="font-mono text-xs text-pop-yellow">0{i + 1}</span>
-                  <span className="font-display text-2xl uppercase tracking-tight md:text-3xl">
-                    {item}
-                  </span>
-                </div>
-                <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-pop-yellow opacity-60 transition-opacity group-hover:opacity-100">
-                  Replace →
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Approach ---------------- */
-function Approach() {
-  const tints = ["#facc15", "#22c55e", "#3b82f6", "#ec4899"];
-  return (
-    <section id="approach" className="bg-white px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-14 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div className="max-w-2xl">
-            <span className="inline-block rounded-full border-2 border-black bg-pop-blue px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-              Our Approach
-            </span>
-            <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-              From manual delivery to AI-native ops, in four moves.
-            </h2>
-          </div>
-          <p className="max-w-sm text-base text-text-soft">
-            Successful AI adoption requires process redesign — not tool adoption. Here's how we run
-            that redesign.
-          </p>
-        </div>
-        <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-          {APPROACH.map((step, i) => (
-            <div
-              key={step.n}
-              className="relative flex h-full flex-col gap-5 rounded-2xl border-2 border-black p-7 shadow-brutal-sm transition-transform hover:-translate-y-1"
-              style={{ backgroundColor: tints[i] }}
-            >
-              <span className="font-display text-5xl text-black">{step.n}</span>
-              <h3 className="font-display text-3xl uppercase tracking-tight text-black">
-                {step.title}
-              </h3>
-              <p className="text-sm leading-relaxed text-black/80">{step.body}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Systems ---------------- */
 function Systems() {
   return (
-    <section
-      id="systems"
-      className="border-y-2 border-black bg-surface-soft px-5 py-24 md:px-8 md:py-32"
-    >
+    <section id="systems" className="bg-white px-5 py-24 md:px-8">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-14 max-w-3xl">
-          <span className="inline-block rounded-full border-2 border-black bg-pop-orange px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-black">
-            What we help with
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-            Four systems. One operating model.
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">What we build</p>
+          <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            Operating systems, not automation tricks.
           </h2>
-          <p className="mt-6 text-lg text-text-soft">
-            We rebuild the parts of your agency that consume the most time and create the most
-            friction.
-          </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {SYSTEMS.map((s, i) => (
-            <div
-              key={s.title}
-              className="group relative overflow-hidden rounded-2xl border-2 border-black bg-white p-8 shadow-brutal transition-transform hover:-translate-y-1 md:p-12"
-            >
-              <div
-                className="absolute right-0 top-0 h-3 w-full"
-                style={{ backgroundColor: s.color }}
-              />
-              <span className="font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-text-mute">
-                0{i + 1} / System
-              </span>
-              <h3 className="mt-4 font-display text-3xl uppercase tracking-tight text-black md:text-4xl">
-                {s.title}
-              </h3>
-              <p className="mt-5 max-w-md text-base leading-relaxed text-text-soft">{s.body}</p>
-              <div
-                className="mt-8 inline-flex items-center gap-2 rounded-full border-2 border-black px-4 py-1.5 font-mono text-[10px] font-bold uppercase tracking-widest text-black"
-                style={{ backgroundColor: s.color }}
-              >
-                <span className="size-1.5 rounded-full bg-black" />
-                Live system
-              </div>
+        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          {SYSTEMS.map((system) => (
+            <div key={system.title} className="rounded-[2rem] border border-slate-200 bg-white p-6 shadow-[0_20px_60px_-40px_rgba(15,23,42,0.55)]">
+              <p className="text-sm font-semibold text-teal-600">{system.metric}</p>
+              <h3 className="mt-5 text-2xl font-semibold tracking-tight text-slate-950">{system.title}</h3>
+              <p className="mt-3 text-sm leading-6 text-slate-600">{system.body}</p>
             </div>
           ))}
         </div>
@@ -631,99 +287,151 @@ function Systems() {
   );
 }
 
-/* ---------------- Audience ---------------- */
-function Audience() {
-  const tints = ["#facc15", "#22c55e", "#3b82f6", "#ec4899", "#f97316", "#a855f7"];
+function Services() {
+  const [active, setActive] = useState(0);
+  const service = SERVICES[active];
   return (
-    <section id="audience" className="bg-white px-5 py-24 md:px-8 md:py-32">
-      <div className="mx-auto grid max-w-7xl gap-14 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <span className="inline-block rounded-full border-2 border-black bg-pop-magenta px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-white">
-            Who it's for
-          </span>
-          <h2 className="mt-4 font-display text-4xl uppercase leading-[1] tracking-tight text-black md:text-6xl">
-            Built for agencies ready to stop running manually.
-          </h2>
-          <p className="mt-6 max-w-md text-base text-text-soft">
-            If your agency depends on humans doing repetitive work every day, we can redesign it.
-          </p>
-          <p className="mt-10 max-w-lg font-serif text-2xl italic leading-snug text-black">
-            "Tyche AI Labs helps agencies become AI-native — not by adding tools, but by rebuilding
-            operations around AI."
+    <section id="services" className="bg-slate-950 px-5 py-24 text-white md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">Services</p>
+            <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">
+              Pick the bottleneck. Build the system.
+            </h2>
+          </div>
+          <p className="max-w-md text-base leading-7 text-slate-400">
+            We usually start where the founder feels the most drag: sales, delivery, reporting, or
+            client communication.
           </p>
         </div>
-        <div className="md:col-span-7">
-          <ul className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-            {AUDIENCE.map((a, i) => (
-              <li
-                key={a}
-                className="flex items-center gap-4 rounded-xl border-2 border-black bg-white p-5 shadow-brutal-sm transition-transform hover:-translate-y-0.5"
+
+        <div className="mt-12 grid gap-6 lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="grid gap-3">
+            {SERVICES.map((item, index) => (
+              <button
+                key={item.label}
+                onClick={() => setActive(index)}
+                className={`rounded-2xl border px-5 py-4 text-left transition ${
+                  active === index
+                    ? "border-teal-300 bg-teal-300 text-slate-950"
+                    : "border-white/10 bg-white/[0.04] text-slate-300 hover:bg-white/[0.08]"
+                }`}
               >
-                <span
-                  className="flex size-10 shrink-0 items-center justify-center rounded-lg border-2 border-black font-display text-sm text-black"
-                  style={{ backgroundColor: tints[i % tints.length] }}
-                >
-                  0{i + 1}
-                </span>
-                <span className="font-display text-base uppercase tracking-tight text-black md:text-lg">
-                  {a}
-                </span>
-              </li>
+                <span className="text-sm font-semibold">{item.label}</span>
+              </button>
             ))}
-          </ul>
+          </div>
+
+          <div className="rounded-[2rem] border border-white/10 bg-white/[0.06] p-6 md:p-8">
+            <h3 className="text-3xl font-semibold tracking-tight text-white md:text-5xl">
+              {service.title}
+            </h3>
+            <div className="mt-8 grid gap-4 md:grid-cols-2">
+              <div className="rounded-3xl bg-slate-900/80 p-6">
+                <p className="text-sm font-semibold text-slate-500">What founders feel</p>
+                <p className="mt-3 leading-7 text-slate-300">{service.pain}</p>
+              </div>
+              <div className="rounded-3xl bg-teal-300 p-6 text-slate-950">
+                <p className="text-sm font-semibold text-slate-700">What we change</p>
+                <p className="mt-3 leading-7">{service.fix}</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ---------------- CTA ---------------- */
+function Process() {
+  return (
+    <section id="approach" className="bg-white px-5 py-24 md:px-8">
+      <div className="mx-auto max-w-7xl">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">How it works</p>
+          <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            Small enough to adopt. Serious enough to matter.
+          </h2>
+        </div>
+        <div className="mt-12 divide-y divide-slate-200 border-y border-slate-200">
+          {PROCESS.map(([title, body], index) => (
+            <div key={title} className="grid gap-4 py-7 md:grid-cols-[0.25fr_0.35fr_1fr] md:items-center">
+              <span className="text-sm font-semibold text-slate-400">{String(index + 1).padStart(2, "0")}</span>
+              <h3 className="text-2xl font-semibold text-slate-950">{title}</h3>
+              <p className="max-w-2xl leading-7 text-slate-600">{body}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Fit() {
+  const fit = ["Early-stage agencies finding rhythm", "Growth-stage agencies feeling drag", "Teams where WhatsApp is the operating system", "Founders tired of being the escalation path"];
+  return (
+    <section id="fit" className="bg-slate-50 px-5 py-24 md:px-8">
+      <div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-[0.9fr_1.1fr]">
+        <div>
+          <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-600">Fit</p>
+          <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight text-slate-950 md:text-6xl">
+            Built for agencies that care about the craft and the business.
+          </h2>
+        </div>
+        <div className="grid gap-3">
+          {fit.map((item) => (
+            <div key={item} className="rounded-2xl border border-slate-200 bg-white p-5 text-lg font-medium text-slate-800">
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function CTA() {
   return (
-    <section id="cta" className="bg-pop-yellow px-5 py-28 md:px-8 md:py-36">
-      <div className="mx-auto max-w-5xl text-center">
-        <span className="inline-block rounded-full border-2 border-black bg-black px-4 py-1 font-mono text-[10px] font-bold uppercase tracking-[0.2em] text-pop-yellow">
-          The Next Step
-        </span>
-        <h2 className="mt-6 font-display text-5xl uppercase leading-[0.95] tracking-tight text-black md:text-7xl lg:text-[7rem]">
-          Ready to redesign
-          <br />
-          your agency?
+    <section id="cta" className="bg-slate-950 px-5 py-24 text-white md:px-8">
+      <div className="mx-auto max-w-4xl text-center">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-teal-300">Start here</p>
+        <h2 className="mt-4 font-display text-4xl font-semibold tracking-tight md:text-6xl">
+          Bring one messy workflow. We will tell you what is worth fixing.
         </h2>
-        <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-black/80 md:text-xl">
-          If your team is still spending too much time on repetitive work and scattered operations,
-          it's time to change the operating model.
+        <p className="mx-auto mt-6 max-w-2xl leading-8 text-slate-400">
+          The first step is a 90-minute Ops Diagnostic. You leave with a written scorecard and a
+          clear next move.
         </p>
-        <div className="mt-10">
+        <div className="mt-9 flex flex-wrap justify-center gap-3">
           <a
-            href="mailto:hello@tycheailabs.com"
-            className="inline-flex items-center rounded-lg border-2 border-black bg-black px-10 py-5 font-display text-lg uppercase tracking-wider text-white shadow-brutal transition-transform hover:-translate-y-0.5 hover:translate-x-0.5 hover:shadow-brutal-sm md:text-xl"
+            href="mailto:hello@tycheailabs.com?subject=Book%20an%20Ops%20Diagnostic"
+            className="rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-teal-100"
           >
-            Book a Transformation Call
+            Book an Ops Diagnostic
+          </a>
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noreferrer"
+            className="rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-white/10"
+          >
+            WhatsApp us first
           </a>
         </div>
-        <p className="mt-10 font-mono text-xs font-bold uppercase tracking-[0.3em] text-black/70">
-          Stop running manually. Start operating intelligently.
-        </p>
+        <p className="mt-6 text-sm text-slate-500">₹15,000. Credited toward any build sprint.</p>
       </div>
     </section>
   );
 }
 
-/* ---------------- Footer ---------------- */
 function Footer() {
   return (
-    <footer className="border-t-2 border-black bg-black py-10 text-white">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-4 px-6 text-xs md:flex-row md:items-center md:px-8">
-        <div className="flex items-center gap-2">
-          <span className="font-display uppercase">
-            Tyche<span className="text-pop-red">.</span>AI
-          </span>
-          <span className="text-white/60">— AI-native operations for modern agencies.</span>
-        </div>
-        <p className="text-white/60">
-          © {new Date().getFullYear()} Tyche AI Labs. All rights reserved.
-        </p>
+    <footer className="border-t border-slate-200 bg-white px-5 py-10 md:px-8">
+      <div className="mx-auto flex max-w-7xl flex-col gap-3 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+        <p className="font-semibold text-slate-950">Tyche.AI</p>
+        <p>Operations systems for Indian agencies.</p>
+        <p>© {new Date().getFullYear()} Tyche Labs.</p>
       </div>
     </footer>
   );
@@ -731,18 +439,15 @@ function Footer() {
 
 function Index() {
   return (
-    <main className="bg-white text-foreground">
+    <main className="bg-white text-slate-950">
       <Nav />
-      <OperatorStrip />
       <Hero />
-      <LogoStrip />
-      <SubHero />
-      <Pain />
-      <Differentiators />
-      <OldEngine />
-      <Approach />
+      <ToolStrip />
+      <Problems />
       <Systems />
-      <Audience />
+      <Services />
+      <Process />
+      <Fit />
       <FAQ />
       <CTA />
       <Footer />
